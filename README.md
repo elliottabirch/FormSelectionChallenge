@@ -37,3 +37,19 @@ that is in this folder.
 More about background scripts: https://developer.chrome.com/extensions/background_pages
 More about communication with the background script: https://developer.chrome.com/extensions/nativeMessaging
 
+## Outline of Work
+
+I started with trying to find the form element, then wanted to work down from there. 
+
+I filtered out only forms that contain elements with key words related to logging in.
+  - had to include 'onlineId1' in order to get BofA to work
+
+implemented getPasswordField
+  - searched for inputs within my sign in forms that pertained to passwords
+
+implemented getUsernameField
+  - searched for inputs within sign in form that pertained to usernames
+
+implemented getSumbitButton
+  - searched for buttons within form that pertained to signing in
+  - had to include inputs in my search for citibank
