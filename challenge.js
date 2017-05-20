@@ -1,26 +1,22 @@
 /**
  * Note: Read README first.
  */
-
-/**
- * Some utility functions that may or may not be useful.
+const contains = (array, values) => array.reduce((arrayContainsValue, val) => arrayContainsValue || values.includes(val), false);
+ /* Some utility functions that may or may not be useful.
  * Feel free to modify these.
  */
 function getUsernameField() {
-  return $('#email');
+  const userRegEx = new RegExp('username|email|user', 'i');
+  return getFormField().find('input').filter((index, element) => userRegEx.test(element.name));
 }
 
 function getPasswordField() {
-  return $('#pass');
+  const passwordRegEx = new RegExp('pass|pwd', 'i');
+  return getFormField().find('input').filter((index, element) => passwordRegEx.test(element.name));
 }
 
 function getFormField() {
-  return $('form').filter((index, element) => {
-    console.log(element, index);
-    return element.method === 'post'
-;
-  },
-    );
+  return $('form').filter((index, element) => contains(Object.keys(element.elements), ['password', 'pwd', 'email', 'username', 'email']));
 }
 
 function getSubmitButton() {
