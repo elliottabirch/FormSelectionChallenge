@@ -6,21 +6,25 @@ const contains = (array, values) => array.reduce((arrayContainsValue, val) => ar
  * Feel free to modify these.
  */
 function getUsernameField() {
-  const userRegEx = new RegExp('username|email|user', 'i');
-  return getFormField().find('input').filter((index, element) => userRegEx.test(element.name));
+  const userRegEx = new RegExp('username|email|user|id', 'i');
+  return getFormField().find('input').filter((index, element) => userRegEx.test(element.placeholder));
 }
 
 function getPasswordField() {
   const passwordRegEx = new RegExp('pass|pwd', 'i');
-  return getFormField().find('input').filter((index, element) => passwordRegEx.test(element.name));
+  return getFormField().find('input').filter((index, element) => passwordRegEx.test(element.placeholder));
 }
 
 function getFormField() {
-  return $('form').filter((index, element) => contains(Object.keys(element.elements), ['password', 'pwd', 'email', 'username', 'email']));
+  return $('form').filter((index, element) => contains(Object.keys(element.elements), ['password', 'pwd', 'email', 'username', 'email', 'onlineId1']));
 }
 
 function getSubmitButton() {
-  return $('#loginbutton');
+  const buttonRegEx = new RegExp('sign|in|log|next', 'i');
+  const inputRegEx = new RegExp('sign on', 'i');
+  const loginButtons = $('button').filter((index, element) => buttonRegEx.test(element.textContent));
+  const loginInputs = $('input').filter((index, element) => inputRegEx.test(element.value));
+  return loginButtons[0] || loginInputs;
 }
 
 /**
